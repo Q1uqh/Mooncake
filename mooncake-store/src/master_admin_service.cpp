@@ -312,6 +312,9 @@ bool MasterAdminServer::Start() {
                         << ", view_version="
                         << snapshot.leader_view->view_version;
                 }
+                log_stream << ", "
+                           << MasterMetricManager::instance()
+                                  .get_replica_totals_summary();
                 LOG(INFO) << log_stream.str();
                 if (metric_report_stop_sem_.try_acquire_for(
                         std::chrono::seconds(kMetricReportIntervalSeconds))) {

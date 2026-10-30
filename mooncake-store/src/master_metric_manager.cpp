@@ -2423,6 +2423,16 @@ void MasterMetricManager::add_stat_to_dict(
 }
 
 // --- Human-Readable Summary ---
+std::string MasterMetricManager::get_replica_totals_summary() {
+    // Cumulative per-key replica lookup counts, not reporting-window deltas.
+    std::stringstream ss;
+    ss << "get_replica_totals={get_total=" << total_get_nums_.value()
+       << ", dram_hit_total=" << mem_cache_hit_nums_.value()
+       << ", ssd_hit_total=" << file_cache_hit_nums_.value()
+       << ", valid_total=" << valid_get_nums_.value() << "}";
+    return ss.str();
+}
+
 std::string MasterMetricManager::get_summary_string() {
     return get_summary_string(false);
 }

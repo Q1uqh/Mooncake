@@ -469,6 +469,7 @@ class MasterMetricManager {
      */
     std::string get_summary_string();
     std::string get_summary_string_and_update_snapshot();
+    std::string get_replica_totals_summary();
 
    private:
     // --- Private Constructor & Destructor ---
